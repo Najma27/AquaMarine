@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AquaMarine Cryptography Website</title>
+</head>
+<body>
+    <h1>File Encryption</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xml">
+        <input type="submit" value="Encrypt">
+    </form>
+    {% if encrypted_file_link %}
+        <p>File encrypted successfully! Download the encrypted file: <a href="{{ encrypted_file_link }}">Download</a></p>
+        <p>Encryption Key: {{ session['encryption_key'] }}</p>  <!-- show encrypt key -->
+    {% endif %}
+
+    <hr>
+
+    <h1>File Decryption</h1>
+    <form action="/decrypt" method="post">
+        <input type="text" name="filename" placeholder="Enter encrypted filename">
+        <input type="text" name="decryption_key" placeholder="Enter decryption key">
+        <input type="submit" value="Decrypt and Download">
+    </form>
+    {% if decrypted_file_link %}
+        <p>File decrypted successfully! Download the decrypted file: <a href="{{ decrypted_file_link }}">Download</a></p>
+    {% endif %}
+</body>
+</html>
